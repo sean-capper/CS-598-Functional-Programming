@@ -1,0 +1,104 @@
+CS-498/598
+Summer 2019
+Assignment 2
+
+Deadline: Wednesday, 6/5/19, 11:59pm
+Name: Sean Capper
+
+Save this file and dropbox it as assignment2.txt. Insert your name above. Insert your answers in the space below the questions. Also dropbox triangles.hs from problem 3) below.
+
+(Lists - 13 points)
+1. In ghci, try the following expressions and write what the resulting values are.
+   What is wrong with the ones that give errors?
+
+1:[2,3,4]
+    [1,2,3,4]
+
+1:2:3:4:[]
+    [1,2,3,4]
+
+[1,2,3]:[4..7]
+    The cons operator takes an element and a list, not two lists.
+
+[1,2,3] ++ [4..7]
+    [1,2,3,4,5,6,7]
+
+1:['a','b']
+    The element and the lists are different types.
+
+"abc"++"cd"
+    "abccd"
+
+"a":"bCc"
+    The second arguemnt needs to be a list.
+
+"a" ++ "bCc"
+    "abCc"
+
+'a':'b'
+    The second arguemnt needs to be a list.
+
+'a':"b"
+    "ab"
+
+[1,4,7] ++ 4:[5:[]]
+    Can't concat a list to a list containing a list.
+
+[True,True:[]]
+    Can't have a list with different type elements.
+
+True:[True,False]
+    [True, True, False]
+
+(15 points)
+2. A mathematician named Ulam proposed generating a sequence of numbers from any
+   positive integer n (n > 0) as follows:
+
+          • If n is 1, stop.
+          • If n is even, the next number is n/2.
+          • If n is odd, the next number is 3*n + 1.
+          • Continue with this process until reaching 1.
+
+   Here are some sequences for the starting integers 2-7:
+
+          2 ->  1
+          3 -> 10 ->  5 -> 16 ->  8 ->  4 ->  2 ->  1
+          4 ->  2 ->  1
+          5 -> 16 ->  8 ->  4 ->  2 ->  1
+          6 ->  3 -> <repeat Ulam sequence for 3>
+          7 -> 22 -> 11 -> 34 -> 17 -> 52 -> 26 -> 13
+            -> 40 -> 20 -> 10 -> 5 -> <repeat Ulam sequence for 5>
+
+   Write the definition of a function called 'ulam' which takes an integer argument
+   n and returns the Ulam sequence for n as a String:
+
+   -- ulam :: Int -> String
+
+   Haskell has boolean functions called even and odd that you can use.
+
+    ulam :: Int -> String
+    ulam n
+        | n == 1 = show n
+        | even n = show n ++ " -> " ++ ulam nextEven
+        | otherwise = show n ++ " -> " ++ ulam nextOdd
+        where
+            nextEven = div n 2
+            nextOdd = 3 * n + 1
+
+
+
+(15 points)
+3. Write a program, triangles.hs, that prompts for and inputs the 3 edges of a
+   triangle and outputs whether the edges form a valid triangle or not. The triangle
+   is valid if the sum of any two edges is greater than the third edge. For example,
+   if the edges have lengths 1, 2 and 1, that is not a valid triangle. If the edges
+   are 2, 2 and 1, that is a valid triangle.
+
+   In triangles.hs, use a boolean function 'validTriangle' that takes 3 arguments for
+   the 3 triangle edges and returns True if the edges form a valid triangle, else
+   False if they do not form a valid triangle:
+
+	-- validTriangle :: Double -> Double -> Double -> Boolean
+
+   Your program must use a main function and be compileable using ghc or runnable 
+   using runghc.

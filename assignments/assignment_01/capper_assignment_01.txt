@@ -1,0 +1,126 @@
+CS-498/598
+Summer 2019
+Assignment 1
+
+
+Deadline: Wednesday, 5/29/2019, 11:59pm
+Name: Sean Capper
+
+
+Save this file and dropbox it as assignment1.txt. Insert your name above. Insert your answers in the space below the questions.
+
+
+(5 points)
+1. Give one reason why the following code sequence is incorrect in Haskell:
+
+
+  x = 4
+  x = ((x * 2))
+
+        Variables in haskell are immutable so a new value cannot be given to x after x = 4.
+
+(15 points)
+2. An alternative to the / (division) operator is the div function.
+
+
+* Show a usage of the div function as an infix function to divide a numerator and denominator.
+
+        x = 6 `div` 3
+
+* Besides their names, what is the difference between the / operator and the div function?
+
+        / is fractional division and div is integer division.
+
+* If num = 456, combine the div and mod functions to get the middle digit of num.
+
+
+        x = (num `div` 10) `mod` 8
+
+
+
+(5 points)
+3. What is the result of the expression 
+
+
+abs -6 
+
+   in Haskell, where abs returns the absolute value of its argument? Explain the
+   result.
+
+        The expression would return an error because the -6 needs to be wrapped in
+        parenthesis.
+
+(5 points)
+4. Haskell automatically infers the type of variables and lists. What would Haskell
+   infer the type of the following list to be?
+
+
+myCombo = [1, 2, -5, -5, 5.1]
+
+        Fractional a => [a]
+
+
+
+(5 points)
+5. Would the following be a legal list in Haskell?
+
+
+        myCombo = [1, 'a', "auto"]
+
+        No because all the elements of the list are not the same type.
+
+
+(5 points)
+6. What would be the type of the following variable in Haskell? Your answer must come
+   from using :t in ghci.
+
+
+        myDuck = "Daffy"
+
+        myDuck :: [Char]
+
+
+(8 points)
+7. The head, tail, length, take and other list functions can be applied to Strings.
+   Say that you have the variables firstName and lastName that contain a first name
+   and last name as Strings. Write Haskell code to do the following:
+
+
+   * Make a variable f equal to the first character of firstName.
+        f = head firstName
+   * Make a variable la equal to the first 2 characters of lastName.
+        la = take 2 lastName
+   * Make a variable fla equal to the concatenation of f and la.
+        fla = [f] ++ la
+   * If firstName is "daffy" and lastName is "duck", then fla would be "ddu".
+        
+
+(8 points)
+8. Write a Haskell function called 'abbrevName' that accepts two String inputs 'first' and 'last' for a Person's first and last names, respectively. The function will return an abbreviated name using the rules in question 7 above. Use no print statements of any type in this function.
+
+
+Function usage:
+
+
+        abbrevName "daffy" "duck" -- returns "ddu"
+
+
+        abbrevName :: String -> String -> String
+        abbrevName first last = [head first] ++ take 2 last
+
+
+
+
+(10 points)
+9. Write a Haskell function called 'stringMult' that accepts a String and positive int as inputs and returns a larger string that is n copies of the original string. Use no print statements of any type in this function.
+
+
+Function usage:
+
+
+        stringMult "Hi" 2 -- returns "HiHi"
+        stringMult "Hi" 3 -- returns "HiHiHi"
+
+
+        stringMult :: String -> Int -> String
+        stringMult phrase n = concat $ replicate n phrase
