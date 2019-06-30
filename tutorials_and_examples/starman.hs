@@ -22,10 +22,8 @@ turn word display nStars =
                putStrLn "You win!"
             else
                getGuess word display nStars -- game continues
-               
-               
-               
 
+    
 -- Get player's guess
 -- Grab a line of input, but only use 1st char.
 getGuess :: String -> String -> Int -> IO ()

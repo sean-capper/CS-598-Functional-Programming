@@ -1,3 +1,4 @@
+-- Sean Capper
 -- triangles.hs
 -- Prompts for and inputs the 3 edges of a triangle and
 -- outputs whether the edges form a valid triangle or not.
